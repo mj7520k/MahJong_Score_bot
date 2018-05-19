@@ -2,6 +2,7 @@ from requests_oauthlib import OAuth1Session
 import config
 import json
 
+# 初期化
 def init():
     CK = config.CK
     CS = config.CS
@@ -10,6 +11,7 @@ def init():
 
     return OAuth1Session(CK, CS, AT, AS)
 
+# メンションを取得
 def get_mentions(oauth, since_id):
     url = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
 
@@ -25,6 +27,7 @@ def get_mentions(oauth, since_id):
         print("Error> get_mentions : " + str(request.status_code))
         return None
 
+# 結果をリプライ
 def result_reply(oauth, results):
     url = "https://api.twitter.com/1.1/statuses/update.json"
 
